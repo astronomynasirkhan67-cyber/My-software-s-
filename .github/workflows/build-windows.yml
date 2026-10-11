@@ -1,3 +1,4 @@
+
 name: Build Shop Management Windows
 
 on:
@@ -22,10 +23,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Application
         run: npm run build
