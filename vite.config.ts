@@ -11,6 +11,9 @@ export default defineConfig({
       {
         entry: 'electron/main.ts',
         vite: {
+          resolve: {
+            extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+          },
           build: {
             outDir: 'dist-electron',
             rollupOptions: {
@@ -25,6 +28,9 @@ export default defineConfig({
           options.reload();
         },
         vite: {
+          resolve: {
+            extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+          },
           build: {
             outDir: 'dist-electron'
           }
@@ -36,6 +42,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
-    }
+    },
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
   }
 });
