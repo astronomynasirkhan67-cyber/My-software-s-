@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:electron",
-    "build:electron": "tsc -p tsconfig.node.json",
+    "build": "vite build",
+    "build:electron": "vite build",
     "start": "electron .",
     "dist": "npm run build && electron-builder --win --x64"
   },
