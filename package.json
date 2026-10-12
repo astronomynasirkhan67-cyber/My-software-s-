@@ -10,9 +10,11 @@
     "build": "vite build",
     "build:electron": "vite build",
     "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
     "dist": "npm run build && electron-builder --win nsis --x64"
   },
   "dependencies": {
+    "adm-zip": "^0.5.14",
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^11.1.2",
     "clsx": "^2.1.1",
@@ -25,14 +27,13 @@
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.5.5",
     "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.11",
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "adm-zip": "^0.5.14",
-    "@types/adm-zip": "^0.5.5",
     "autoprefixer": "^10.4.20",
     "electron": "22.3.27",
     "electron-builder": "24.13.3",
@@ -54,6 +55,9 @@
       "dist/**/*",
       "dist-electron/**/*",
       "package.json"
+    ],
+    "asarUnpack": [
+      "**/node_modules/better-sqlite3/**/*"
     ],
     "win": {
       "target": [
