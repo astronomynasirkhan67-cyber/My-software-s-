@@ -22,20 +22,27 @@ jobs:
         with:
           node-version: 20
 
-      - name: Verify package.json
-        run: |
-          if (!(Test-Path "package.json")) {
-            throw "package.json not found"
-          }
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Configure npm for Python
+        run: npm config set python "${{ env.pythonLocation }}\python.exe"
+        shell: pwsh
+        env:
+          pythonLocation: ${{ env.pythonLocation }}
 
       - name: Install dependencies
         run: npm install
 
-      - name: Rebuild native SQLite module
-        run: npx electron-builder install-app-deps
-
       - name: Build application
         run: npm run build
+
+      - name: Rebuild native dependencies
+        run: npx electron-builder install-app-deps
+        env:
+          npm_config_python: ${{ env.pythonLocation }}\python.exe
 
       - name: Create Windows installer
         run: npx electron-builder --win nsis --x64 --publish never
