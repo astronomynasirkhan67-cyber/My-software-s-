@@ -21,25 +21,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+
+      - name: Verify package.json
+        run: |
+          if (!(Test-Path "package.json")) {
+            throw "package.json not found"
+          }
 
       - name: Install dependencies
         run: npm install
+
+      - name: Rebuild native SQLite module
+        run: npx electron-builder install-app-deps
 
       - name: Build application
         run: npm run build
 
       - name: Create Windows installer
-        run: npx electron-builder --win nsis --x64
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --win nsis --x64 --publish never
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
           name: My-Shop-Inventory-Manager-Windows-x64
-          path: |
-            release/*.exe
-            dist/*.exe
+          path: release/*.exe
           if-no-files-found: error
           retention-days: 14
