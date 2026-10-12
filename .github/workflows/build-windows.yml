@@ -27,11 +27,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Configure npm for Python
-        run: npm config set python "${{ env.pythonLocation }}\python.exe"
+      - name: Set Python for node-gyp
         shell: pwsh
-        env:
-          pythonLocation: ${{ env.pythonLocation }}
+        run: |
+          "npm_config_python=$((Get-Command python).Source)" |
+            Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Install dependencies
         run: npm install
@@ -41,8 +41,6 @@ jobs:
 
       - name: Rebuild native dependencies
         run: npx electron-builder install-app-deps
-        env:
-          npm_config_python: ${{ env.pythonLocation }}\python.exe
 
       - name: Create Windows installer
         run: npx electron-builder --win nsis --x64 --publish never
