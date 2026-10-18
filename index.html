@@ -1,17 +1,421 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
-    <meta
-      name="description"
-      content="Private Offline Desktop Shop Management Software"
-    />
-    <title>Shop Management</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Astronomy with Nasir Khan</title>
+  <meta name="description" content="Astronomy and space education by Nasir Khan">
+
+  <meta name="theme-color" content="#050711">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Space Video Background -->
+  <style>
+    html {
+      background: #050711;
+    }
+
+    body {
+      position: relative;
+      isolation: isolate;
+      background: transparent !important;
+    }
+
+    #space-background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -2;
+      pointer-events: none;
+      background: #050711;
+    }
+
+    /* Dark overlay for readable text */
+    #space-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: rgba(3, 6, 18, 0.48);
+    }
+
+    /* Keep website content above the video */
+    .nav,
+    section,
+    footer {
+      position: relative;
+    }
+
+    /* Remove the old animated background */
+    #solar-bg {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      #space-background {
+        object-position: center;
+      }
+
+      #space-overlay {
+        background: rgba(3, 6, 18, 0.58);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #space-background {
+        display: none;
+      }
+
+      body {
+        background: #050711 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Full-screen Space Video -->
+  <video
+    id="space-background"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  >
+    <source
+      src="videos/space-background.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <!-- Dark overlay -->
+  <div id="space-overlay"></div>
+
+  <!-- Navigation / Logo -->
+  <header class="nav">
+
+    <a class="brand" href="#home">
+      <img
+        src="images/nasir.jpg"
+        alt="Nasir Khan"
+        class="logo-photo"
+      >
+
+      <span>🔭 Astronomy with Nasir Khan</span>
+    </a>
+
+    <button id="menuBtn" aria-label="Menu">☰</button>
+
+    <nav id="menu">
+      <a href="#explore">Articles</a>
+      <a href="#calendar">Sky Calendar</a>
+      <a href="#videos">Videos</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+    </nav>
+
+  </header>
+
+  <!-- Home / Introduction -->
+  <section id="home" class="hero">
+
+    <div class="who">
+
+      <img
+        src="images/nasir.jpg"
+        alt="Nasir Khan"
+        class="profile-photo"
+      >
+
+      <div>
+        <b>Nasir Khan</b><br>
+        <span>Amateur Astronomer &amp; Astrophotographer</span>
+      </div>
+
+    </div>
+
+    <p class="eyebrow">
+      ASTRONOMY &amp; SPACE EDUCATION
+    </p>
+
+    <h1>
+      Look up.
+      <span class="grad">The universe is waiting.</span>
+    </h1>
+
+    <p class="lead">
+      I'm Nasir Khan, an amateur astronomer and astrophotographer.
+      Here I share what the night sky teaches — in plain, curious
+      language anyone can follow.
+    </p>
+
+    <a class="btn primary" href="#explore">
+      Start exploring →
+    </a>
+
+    <a class="btn ghost" href="#calendar">
+      This month's sky
+    </a>
+
+    <a
+      class="btn yt"
+      href="https://www.youtube.com/@astronomy_with_nasir_khan"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      ▶ Watch on YouTube
+    </a>
+
+  </section>
+
+  <!-- Explore -->
+  <section id="explore">
+
+    <p class="eyebrow">EXPLORE THE COSMOS</p>
+
+    <h2>Four doors into the night sky</h2>
+
+    <div class="cards">
+
+      <article class="card">
+
+        <div
+          class="ph"
+          style="background-image:url('images/solar-system.jpg')"
+        ></div>
+
+        <h3>The Solar System</h3>
+
+        <p>
+          Our neighbourhood of eight planets, moons and rubble.
+        </p>
+
+        <ul>
+          <li>Planet-by-planet guides</li>
+          <li>Conjunctions &amp; oppositions</li>
+          <li>What a small scope shows</li>
+        </ul>
+
+      </article>
+
+      <article class="card">
+
+        <div
+          class="ph"
+          style="background-image:url('images/deep-sky.jpg')"
+        ></div>
+
+        <h3>Deep Sky Objects</h3>
+
+        <p>
+          Nebulae, galaxies and star clusters — faint, ancient light.
+        </p>
+
+        <ul>
+          <li>Messier &amp; Caldwell lists</li>
+          <li>Galaxies, nebulae, clusters</li>
+          <li>Dark-sky vs. city viewing</li>
+        </ul>
+
+      </article>
+
+      <article class="card">
+
+        <div
+          class="ph"
+          style="background-image:url('images/astrophotography.jpg')"
+        ></div>
+
+        <h3>Astrophotography</h3>
+
+        <p>
+          From a phone on a tripod to tracked deep-sky imaging.
+        </p>
+
+        <ul>
+          <li>Exposure &amp; ISO starting points</li>
+          <li>Tracking, stacking, calibration</li>
+          <li>Post-processing</li>
+        </ul>
+
+      </article>
+
+      <article class="card">
+
+        <div
+          class="ph"
+          style="background-image:url('images/stargazing.jpg')"
+        ></div>
+
+        <h3>Stargazing Tips</h3>
+
+        <p>
+          Unglamorous skills that make the biggest difference.
+        </p>
+
+        <ul>
+          <li>Dark-adapt your eyes</li>
+          <li>Star-hop from bright anchors</li>
+          <li>Light pollution workarounds</li>
+        </ul>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Sky Calendar -->
+  <section id="calendar">
+
+    <p class="eyebrow">OBSERVATION CALENDAR</p>
+
+    <h2>What to watch in the coming months</h2>
+
+    <p class="muted">
+      Dates are approximate for mid-northern latitudes.
+    </p>
+
+    <div class="timeline" id="events"></div>
+
+    <div class="card checklist">
+
+      <h3>A good session checklist</h3>
+
+      <ul>
+        <li>
+          <b>Give your eyes 20 minutes</b> — no screens, no white light.
+        </li>
+
+        <li>
+          <b>Use red light only</b> to check charts.
+        </li>
+
+        <li>
+          <b>Check the Moon phase</b> — new Moon is best for galaxies.
+        </li>
+
+        <li>
+          <b>Let optics cool down</b> for about 20 minutes.
+        </li>
+
+        <li>
+          <b>Start with a bright anchor</b>, then star-hop.
+        </li>
+      </ul>
+
+    </div>
+
+  </section>
+
+  <!-- YouTube Videos -->
+  <section id="videos">
+
+    <p class="eyebrow">VIDEOS</p>
+
+    <h2>From my YouTube channel</h2>
+
+    <p class="muted">
+      @astronomy_with_nasir_khan
+    </p>
+
+    <div class="cards" id="videoList"></div>
+
+    <a
+      class="btn yt"
+      href="https://www.youtube.com/@astronomy_with_nasir_khan"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Subscribe on YouTube
+    </a>
+
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+
+    <p class="eyebrow">GALLERY</p>
+
+    <h2>Frames from the sky</h2>
+
+    <p class="muted">
+      Tap any frame to view full-screen.
+    </p>
+
+    <div class="grid" id="galleryGrid"></div>
+
+  </section>
+
+  <!-- About -->
+  <section id="about">
+
+    <p class="eyebrow">ABOUT</p>
+
+    <h2>
+      Turning backyard curiosity into a lifelong sky habit.
+    </h2>
+
+    <p class="lead">
+      My first telescope was a small refractor and a lot of patience.
+      The night I finally resolved Saturn's rings, the sky stopped
+      being a backdrop and became a place.
+    </p>
+
+    <div class="tags">
+
+      <span>Visual observing</span>
+      <span>Deep-sky imaging</span>
+      <span>Lunar &amp; planetary</span>
+      <span>Star hopping</span>
+      <span>Nightscape photography</span>
+
+    </div>
+
+    <div class="stats">
+
+      <div>
+        <b>12"</b>
+        Dobsonian
+      </div>
+
+      <div>
+        <b>3+</b>
+        Nights logged
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © <span id="yr"></span> Astronomy with Nasir Khan
+  </footer>
+
+  <!-- Gallery Lightbox -->
+  <div id="lightbox">
+    <img alt="Full-size astronomy photograph">
+  </div>
+
+  <!-- Existing website JavaScript -->
+  <script src="script.js"></script>
+
+</body>
 </html>
